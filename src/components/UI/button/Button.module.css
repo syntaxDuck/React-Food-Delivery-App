@@ -1,0 +1,7 @@
+.button-default {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: white;
+    margin: 0.25em;
+    font-size: 24px;
+}

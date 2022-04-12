@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 5rem;
-  padding: 0 5%;
+  padding: 0 2.5% 0 5%;
 
   display: flex;
   justify-content: space-between;
@@ -13,6 +13,7 @@
 
   background-color: rgb(214, 110, 110);
   min-height: 3.5rem;
+  font-size: 24px;
   color: white;
 }
 
@@ -20,4 +21,24 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.buttons {
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.buttons :nth-child(4) {
+  background-color: orange;
+  margin-left: 24px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  color: black;
+}
+
+.buttons :nth-child(4):hover {
+  background-color: rgba(255, 166, 0, 0.39);
 }
