@@ -7,7 +7,7 @@ const button = (props) => {
       className={props.className || classes["button-default"]}
       onClick={props.onClick}
     >
-      {props.label || "button"}
+      <a href="">{props.label || "button"}</a>
     </button>
   );
 };

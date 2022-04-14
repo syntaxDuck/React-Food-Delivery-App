@@ -30,15 +30,3 @@
   display: flex;
   gap: 10px;
 }
-
-.buttons :nth-child(4) {
-  background-color: orange;
-  margin-left: 24px;
-  padding: 5px 15px;
-  border-radius: 20px;
-  color: black;
-}
-
-.buttons :nth-child(4):hover {
-  background-color: rgba(255, 166, 0, 0.39);
-}

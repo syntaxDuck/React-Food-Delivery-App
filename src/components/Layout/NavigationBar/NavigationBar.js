@@ -16,16 +16,15 @@ const NavigationBar = () => {
       id: "about-us",
       text: "About Us",
     },
-    {
-      id: "cart",
-      text: "cart",
-    },
   ];
 
   const Buttons = (
     <ul className={classes.buttons}>
       {menuElements.map((menuElement) => (
-        <Button key={menuElement.id} label={menuElement.text} />
+        <Button
+          key={menuElement.id}
+          label={menuElement.text}
+        />
       ))}
     </ul>
   );
@@ -36,9 +35,7 @@ const NavigationBar = () => {
         chrono delivery
         <span className="material-icons md-36">rocket_launch</span>
       </span>
-      <div>
-        {Buttons}
-      </div>
+      <div>{Buttons}</div>
     </header>
   );
 };
