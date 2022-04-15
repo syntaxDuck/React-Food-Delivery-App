@@ -1,0 +1,72 @@
+.cart-button {
+  display: flex;
+  position: absolute;
+  left: 400px;
+  bottom: 0;
+  margin: 1rem;
+  padding: 0;
+
+  background-color: var(--background-color);
+  color: white;
+
+  border: 2px solid transparent;
+  border-radius: 40px;
+
+  transition: padding 0.2s ease 0s, left 0.2s ease 0s, bottom 0.2s ease 0s;
+}
+
+.cart-button p {
+  margin: 0;
+  padding: 5px 20px;
+
+  transition: padding 0.2s ease 0s;
+}
+
+.cart-button p::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 48%;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 60%;
+  position: absolute;
+  background: white;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.cart-button p::before {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 35%;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: white;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.cart-button:hover {
+  padding: 3px 3px;
+  left: 397px;
+  bottom: -3px;
+
+  border-color: white;
+}
+
+.cart-button:hover p {
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
+.cart-button:hover p::after {
+  width: 10px;
+  left: 33%;
+}
+
+.cart-button:hover p::before {
+  width: 15px;
+  left: 25%;
+}
