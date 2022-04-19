@@ -1,0 +1,40 @@
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  color: white;
+}
+
+.item-details div {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.item-details span {
+  padding-left: 3em;
+  font-size: 1em;
+  font-style: italic;
+}
+
+.item-count {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-count button {
+  margin: 0.5em;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.5em;
+  color: inherit;
+}
+
+.item-count label {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  border: 0.1em solid white;
+  border-radius: 1em;
+  padding: 0.5em 0;
+}
