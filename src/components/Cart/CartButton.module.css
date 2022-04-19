@@ -1,33 +1,33 @@
 .cart-button {
   display: flex;
   position: absolute;
-  left: 400px;
-  bottom: 0;
-  margin: 1rem;
-  padding: 0;
+  left: 25rem;
+  top: 0.5rem;
+  width: 5.5rem;
+  height: 3rem;
 
   background-color: var(--background-color);
   color: white;
 
-  border: 2px solid transparent;
-  border-radius: 40px;
+  border: 0.1rem solid transparent;
+  border-radius: 2rem;
 
-  transition: padding 0.2s ease 0s, left 0.2s ease 0s, bottom 0.2s ease 0s;
+  transition: height 0.1s ease 0s, width 0.1s ease 0s, left 0.1s ease 0s, top 0.1s ease 0s;
 }
 
 .cart-button p {
   margin: 0;
-  padding: 5px 20px;
+  padding: 0.25rem 1.25rem;
 
   transition: padding 0.2s ease 0s;
 }
 
 .cart-button p::after {
   background: none repeat scroll 0 0 transparent;
-  bottom: 48%;
+  top: 48%;
   content: "";
   display: block;
-  height: 2px;
+  height: 0.1rem;
   left: 60%;
   position: absolute;
   background: white;
@@ -40,7 +40,7 @@
   bottom: 35%;
   content: "";
   display: block;
-  height: 1px;
+  height: 0.1rem;
   left: 50%;
   position: absolute;
   background: white;
@@ -49,24 +49,26 @@
 }
 
 .cart-button:hover {
-  padding: 3px 3px;
-  left: 397px;
-  bottom: -3px;
-
+  left: 24.9rem;
+  top: 0.45rem;
+  width: 5.7rem;
+  height: 3.2rem;
+  
   border-color: white;
 }
 
 .cart-button:hover p {
-  padding-left: 30px;
-  padding-right: 10px;
+  padding-top: 0.3rem;
+  padding-left: 1.8rem;
 }
 
 .cart-button:hover p::after {
-  width: 10px;
+  width: 0.75rem;
   left: 33%;
 }
 
 .cart-button:hover p::before {
-  width: 15px;
+  width: 1rem;
   left: 25%;
 }
+

@@ -1,0 +1,8 @@
+.card {
+    display: flex;
+    position: fixed;
+    bottom: 200px;
+    background-color: var(--primary-color);
+    border: 2px solid white;
+    border-radius: 1rem;
+} 

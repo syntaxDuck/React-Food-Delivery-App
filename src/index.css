@@ -1,9 +1,9 @@
-* {
-  box-sizing: border-box;
-  font: 16px sans-serif;
+*{
+  font: 1em sans-serif;
 }
 
-:root {
+html {
+  box-sizing: border-box;
   --primary-color: #d66e6e;
   --secondary-color: #6ed66e;
   --background-color: #505050;
