@@ -9,7 +9,7 @@ const Menu = () => {
     {
       id: "i1",
       name: "california roll",
-      description: "a sushi roll dumby",
+      description: "a sushi roll",
       price: 10,
     },
     {
@@ -29,7 +29,7 @@ const Menu = () => {
   const menuContent = (
     <ul className={classes["menu-items"]}>
       {menuItems.map((menuItem) => {
-        const price = `$${menuItem.price}`;
+        const price = `$${menuItem.price.toFixed(2)}`;
 
         return (
           <MenuItem

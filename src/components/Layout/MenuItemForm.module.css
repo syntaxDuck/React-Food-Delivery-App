@@ -1,0 +1,24 @@
+.item-count {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+  }
+  
+  .item-count button {
+    margin: 0.5em;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 0.5em;
+    color: white;
+  }
+  
+  .item-count label {
+    padding: 0.5em 0;
+    background-color: white;
+    border: 0.14em solid var(--primary-color);
+    border-radius: 0.75em;
+  
+    font-weight: bold;
+    text-align: center;
+    color: black;
+  }

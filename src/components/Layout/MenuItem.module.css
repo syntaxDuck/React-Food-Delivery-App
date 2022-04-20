@@ -1,40 +1,35 @@
 .menu-item {
   display: flex;
   justify-content: space-between;
-  padding: 1em;
+  padding: 0.75em;
   color: white;
+  position: relative;
 }
 
-.item-details div {
+.menu-item::after {
+  display: block;
+  position: absolute;
+  content: "";
+  background: linear-gradient(to right, white 70%, var(--background-color));
+  width: 90%;
+  height: 2px;
+  bottom: 0;
+}
+
+.item-details h3 {
   font-size: 1.5em;
   font-weight: bold;
+  margin: 0;
 }
 
-.item-details span {
-  padding-left: 3em;
+.item-price {
+    margin: 0.25em;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.item-description {
+  margin-left: 10em;
   font-size: 1em;
   font-style: italic;
-}
-
-.item-count {
-  display: flex;
-  flex-direction: column;
-}
-
-.item-count button {
-  margin: 0.5em;
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 0.5em;
-  color: inherit;
-}
-
-.item-count label {
-  background-color: white;
-  color: black;
-  font-weight: bold;
-  text-align: center;
-  border: 0.1em solid white;
-  border-radius: 1em;
-  padding: 0.5em 0;
 }
