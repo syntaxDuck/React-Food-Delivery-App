@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "../UI/Card";
 import MenuItem from "./MenuItem";
-
 import classes from "./Menu.module.css";
 
 const Menu = () => {
@@ -29,13 +28,11 @@ const Menu = () => {
   const menuContent = (
     <ul className={classes["menu-items"]}>
       {menuItems.map((menuItem) => {
-        const price = `$${menuItem.price.toFixed(2)}`;
-
         return (
           <MenuItem
             key={menuItem.id}
             id={menuItem.id}
-            price={price}
+            price={menuItem.price}
             name={menuItem.name}
             description={menuItem.description}
           />
@@ -43,7 +40,11 @@ const Menu = () => {
       })}
     </ul>
   );
-  return <Card>{menuContent}</Card>;
+  return (
+    <Card>
+      {menuContent}
+    </Card>
+  );
 };
 
 export default Menu;
