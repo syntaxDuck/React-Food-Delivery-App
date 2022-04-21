@@ -5,13 +5,13 @@ import image from "./assets/images/sushi.jpg";
 
 function App() {
   return (
-    <div className="App">
-      <img src={image} />
-      <NavigationBar />
-      <div className="content">
-        <Menu />
+      <div className="App">
+        <img src={image} alt="Sushi"/>
+        <NavigationBar />
+        <div className="content">
+          <Menu />
+        </div>
       </div>
-    </div>
   );
 }
 
