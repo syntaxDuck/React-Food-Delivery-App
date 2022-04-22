@@ -2,8 +2,11 @@ import React from "react";
 import Card from "../UI/Card";
 import MenuItem from "./MenuItem";
 import classes from "./Menu.module.css";
+import CartContext from "../Cart/cart-context";
 
 const Menu = () => {
+  console.log("Rendering Menu");
+
   const menuItems = [
     {
       id: "i1",
@@ -25,6 +28,25 @@ const Menu = () => {
     },
   ];
 
+  const { updateItemCount } = React.useContext(CartContext);
+  let items = [];
+
+  const addToPreCartHandler = (newItem) => {
+    const existingCartItemIndex = items.findIndex(
+      (item) => item.id === newItem.id
+    );
+    const existingCartItem = items[existingCartItemIndex];
+    if (existingCartItem) {
+      const updatedItem = {
+        ...items[existingCartItemIndex],
+        amount: newItem.amount,
+      };
+      items[existingCartItemIndex] = updatedItem;
+    } else {
+      items = items.concat(newItem);
+    }
+  };
+
   const menuContent = (
     <ul className={classes["menu-items"]}>
       {menuItems.map((menuItem) => {
@@ -35,16 +57,13 @@ const Menu = () => {
             price={menuItem.price}
             name={menuItem.name}
             description={menuItem.description}
+            onAddToPreCart={addToPreCartHandler}
           />
         );
       })}
     </ul>
   );
-  return (
-    <Card>
-      {menuContent}
-    </Card>
-  );
+  return <Card>{menuContent}</Card>;
 };
 
 export default Menu;

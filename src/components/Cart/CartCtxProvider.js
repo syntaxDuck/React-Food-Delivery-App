@@ -30,9 +30,8 @@ const cartReducer = (state, action) => {
     const totalAmount = updatedItems.reduce((total, item) => {
       return total + item.amount * item.price;
     }, 0);
-
     return { items: updatedItems, totalAmount: totalAmount };
-  };
+  }
   return defaultCartState;
 };
 
@@ -42,9 +41,9 @@ const CartCtxProvider = (props) => {
     defaultCartState
   );
 
-  const updateItemCountHandler = (item) => {
+  const updateItemCountHandler = React.useCallback((item) => {
     dispatchCartAction({ type: "UPDATE_COUNT", item: item });
-  };
+  }, []);
 
   const cartContext = {
     items: cartState.items,

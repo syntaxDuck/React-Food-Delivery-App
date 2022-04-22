@@ -4,6 +4,7 @@ import Menu from "./components/Layout/Menu";
 import image from "./assets/images/sushi.jpg";
 
 function App() {
+  console.log("Rendering");
   return (
       <div className="App">
         <img src={image} alt="Sushi"/>

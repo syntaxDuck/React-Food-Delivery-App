@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./MenuItemForm.module.css";
 
 const MenuItemForm = (props) => {
+  console.log("Rendering Menu Item Form");
   const [itemCount, setItemCount] = React.useState(0);
 
   const incrementCountHandler = () => {
@@ -17,6 +18,7 @@ const MenuItemForm = (props) => {
     });
     props.onUpdateCart(itemCount - 1);
   };
+
 
   return (
     <div className={classes["item-count"]}>

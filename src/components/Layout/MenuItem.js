@@ -2,14 +2,12 @@ import React from "react";
 import MenuItemForm from "./MenuItemForm";
 import classes from "./MenuItem.module.css";
 
-import CartContext from "../Cart/cart-context";
-
-const MenuItem = (props) => {
-  const cartCtx = React.useContext(CartContext);
+const MenuItem = React.memo((props) => {
+  console.log("Rendering MenuItem");
   const price = `$${props.price.toFixed(2)}`;
 
   const updateCartHandler = (itemQuantity) => {
-    cartCtx.updateItemCount({
+    props.onAddToPreCart({
       id: props.id,
       name: props.name,
       price: props.price,
@@ -27,6 +25,6 @@ const MenuItem = (props) => {
       <MenuItemForm onUpdateCart={updateCartHandler} />
     </li>
   );
-};
+});
 
 export default MenuItem;
