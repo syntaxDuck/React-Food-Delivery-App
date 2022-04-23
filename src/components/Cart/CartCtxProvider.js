@@ -7,29 +7,42 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-  if (action.type === "UPDATE_COUNT") {
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.item.id
-    );
+  if (action.type === "UPDATE_CART") {
+    console.log(action.items);
 
-    let updatedItems;
-    const existingCartItem = state.items[existingCartItemIndex];
+    let updatedItems = [...state.items];
 
-    if (existingCartItem) {
-      if (action.item.amount === 0) {
-        updatedItems = state.items.filter((item) => item.id !== action.item.id);
-      } else {
-        const updatedItem = { ...existingCartItem, amount: action.item.amount };
-        updatedItems = [...state.items];
+    action.items.forEach((newItem) => {
+      console.log(newItem);
+
+      //Get existing item index and existing object if item exists in cart
+      const existingCartItemIndex = updatedItems.findIndex(
+        (item) => item.id === newItem.id
+      );
+      const existingCartItem = updatedItems[existingCartItemIndex];
+
+      console.log(existingCartItem, existingCartItemIndex);
+      
+      //If item already exists in cart add items to existing object
+      console.log(updatedItems);
+      if (existingCartItem) {
+        const updatedItem = {
+          ...existingCartItem,
+          amount: existingCartItem.amount + newItem.amount,
+        };
         updatedItems[existingCartItemIndex] = updatedItem;
+      //Else push new item into cart
+      } else {
+        updatedItems.push(newItem);
       }
-    } else {
-      updatedItems = state.items.concat(action.item);
-    }
+    });
 
+    //Sum total cart amount
     const totalAmount = updatedItems.reduce((total, item) => {
       return total + item.amount * item.price;
     }, 0);
+
+    console.log(updatedItems, totalAmount);
     return { items: updatedItems, totalAmount: totalAmount };
   }
   return defaultCartState;
@@ -41,14 +54,14 @@ const CartCtxProvider = (props) => {
     defaultCartState
   );
 
-  const updateItemCountHandler = React.useCallback((item) => {
-    dispatchCartAction({ type: "UPDATE_COUNT", item: item });
+  const updateCartHandler = React.useCallback((items) => {
+    dispatchCartAction({ type: "UPDATE_CART", items: items });
   }, []);
 
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
-    updateItemCount: updateItemCountHandler,
+    updateCart: updateCartHandler,
   };
 
   return (
