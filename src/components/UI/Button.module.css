@@ -1,8 +1,7 @@
 .button-default {
   background-color: transparent;
-  border: none;
-  margin: 0.25em;
-  font-size: 24px;
+  border: 0.1em solid transparent;
+  border-radius: 5em;
 }
 
 
