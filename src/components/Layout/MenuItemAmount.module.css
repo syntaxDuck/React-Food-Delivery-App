@@ -7,13 +7,16 @@
   .item-count button {
     margin: 0.5em;
     background-color: var(--primary-color);
-    border: none;
+    border: 0.15em solid transparent;
     border-radius: 0.5em;
     color: white;
+    transition: all 0.2s;
   }
   
   .item-count label {
+    margin: auto;
     padding: 0.5em 0;
+    width: 2.5em;
     background-color: white;
     border: 0.14em solid var(--primary-color);
     border-radius: 0.75em;
@@ -21,4 +24,8 @@
     font-weight: bold;
     text-align: center;
     color: black;
+  }
+
+  .item-count button:hover {
+    border-color: white;
   }
