@@ -1,12 +1,12 @@
 import React from "react";
-import MenuItemForm from "./MenuItemForm";
+import MenuItemAmount from "./MenuItemAmount";
 import classes from "./MenuItem.module.css";
 
 const MenuItem = React.memo((props) => {
   console.log("Rendering MenuItem");
   const price = `$${props.price.toFixed(2)}`;
 
-  const updateCartHandler = (itemQuantity) => {
+  const updatePreCartHandler = (itemQuantity) => {
     props.onAddToPreCart({
       id: props.id,
       name: props.name,
@@ -22,7 +22,7 @@ const MenuItem = React.memo((props) => {
         <div className={classes["item-price"]}>{price}</div>
         <div className={classes["item-description"]}>{props.description}</div>
       </div>
-      <MenuItemForm onUpdateCart={updateCartHandler} />
+      <MenuItemAmount onUpdatePreCart={updatePreCartHandler} />
     </li>
   );
 });
