@@ -1,5 +1,41 @@
+.menu-card form{
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    position: relative;
+    padding-bottom: 3em;
+}
+
 .menu-items {
     padding: 0;
     list-style-type: none;
     width: 100%;
+}
+
+.menu-submit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--primary-color);
+    width: 8em;
+
+    border: 0.15em solid transparent;
+    border-radius: 5em;
+    transition: all 0.3s;
+}
+
+.menu-submit p {
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 0;
+    margin: 1em;
+}
+
+.menu-submit:hover {
+    background-color: linear-gradient(red white);
+    border-color: white;
+    margin-left: 66.5em;
+    right: -0.25em;
+    width: 8.5em;
 }

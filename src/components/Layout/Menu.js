@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../UI/Card";
 import MenuItem from "./MenuItem";
 import classes from "./Menu.module.css";
+import Button from "../UI/Button";
 import CartContext from "../Cart/cart-context";
 
 const Menu = () => {
@@ -28,7 +29,7 @@ const Menu = () => {
     },
   ];
 
-  const { updateItemCount } = React.useContext(CartContext);
+  const { updateCart } = React.useContext(CartContext);
   let items = [];
 
   const addToPreCartHandler = (newItem) => {
@@ -43,9 +44,14 @@ const Menu = () => {
       };
       items[existingCartItemIndex] = updatedItem;
     } else {
-      items = items.concat(newItem);
+      items.push(newItem);
     }
   };
+
+  const updateCartHandler = (event) => {
+    event.preventDefault();
+    updateCart(items);
+  }
 
   const menuContent = (
     <ul className={classes["menu-items"]}>
@@ -63,7 +69,14 @@ const Menu = () => {
       })}
     </ul>
   );
-  return <Card>{menuContent}</Card>;
+  return (
+    <Card className={classes["menu-card"]}>
+      <form onSubmit={updateCartHandler}>
+        {menuContent}
+        <Button className={classes["menu-submit"]} label="Add to Cart" />
+      </form>
+    </Card>
+  );
 };
 
 export default Menu;
