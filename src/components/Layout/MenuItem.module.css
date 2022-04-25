@@ -1,7 +1,7 @@
 .menu-item {
   display: flex;
   justify-content: space-between;
-  padding: 0.75em;
+  padding: 2em;
   color: white;
   position: relative;
 }
@@ -23,13 +23,13 @@
 }
 
 .item-price {
-    margin: 0.25em;
+  margin: 0.25em;
   font-size: 1.25em;
   font-weight: bold;
 }
 
 .item-description {
-  margin-left: 10em;
+  margin: 0 10em;
   font-size: 1em;
   font-style: italic;
 }
