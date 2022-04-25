@@ -8,23 +8,18 @@ const defaultCartState = {
 
 const cartReducer = (state, action) => {
   if (action.type === "UPDATE_CART") {
-    console.log(action.items);
 
     let updatedItems = [...state.items];
 
     action.items.forEach((newItem) => {
-      console.log(newItem);
 
       //Get existing item index and existing object if item exists in cart
       const existingCartItemIndex = updatedItems.findIndex(
         (item) => item.id === newItem.id
       );
       const existingCartItem = updatedItems[existingCartItemIndex];
-
-      console.log(existingCartItem, existingCartItemIndex);
       
       //If item already exists in cart add items to existing object
-      console.log(updatedItems);
       if (existingCartItem) {
         const updatedItem = {
           ...existingCartItem,
@@ -42,7 +37,6 @@ const cartReducer = (state, action) => {
       return total + item.amount * item.price;
     }, 0);
 
-    console.log(updatedItems, totalAmount);
     return { items: updatedItems, totalAmount: totalAmount };
   }
   return defaultCartState;
@@ -57,6 +51,8 @@ const CartCtxProvider = (props) => {
   const updateCartHandler = React.useCallback((items) => {
     dispatchCartAction({ type: "UPDATE_CART", items: items });
   }, []);
+
+  const submitOrderHandler = () => {};
 
   const cartContext = {
     items: cartState.items,
