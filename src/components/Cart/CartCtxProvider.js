@@ -58,6 +58,7 @@ const CartCtxProvider = (props) => {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     updateCart: updateCartHandler,
+    submitOrder: submitOrderHandler
   };
 
   return (
