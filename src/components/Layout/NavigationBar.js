@@ -3,7 +3,7 @@ import classes from "./navigationBar.module.css";
 import Button from "../UI/Button";
 import CartButton from "../Cart/CartButton";
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
   const menuElements = [
     {
       id: "menu",
@@ -35,7 +35,7 @@ const NavigationBar = () => {
       </span>
       <div className={classes["button-container"]}>
         {Buttons}
-        <CartButton />
+        <CartButton onCartStateChange={props.onCartStateChange}/>
       </div>
     </header>
   );
