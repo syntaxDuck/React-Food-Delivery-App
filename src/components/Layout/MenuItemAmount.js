@@ -5,9 +5,12 @@ const MenuItemAmount = (props) => {
   console.log("Rendering Menu Item Form");
   //Directly manipulating DOM to avoid unecessary renders at the form level
   const [amount, setAmount] = React.useState(0);
+  const isMounted = React.useRef(false);
 
   React.useEffect(() => {
-    setAmount(0);
+    //Logic help avoid double render on mounting
+    if(isMounted.current) setAmount(0);
+    else isMounted.current=true;
   }, [props.onUpdatePreCart]);
 
   const incrementCountHandler = () => {

@@ -15,18 +15,15 @@ const Menu = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
-  const dbUrl = 'https://' + [PROJECT_ID] + ".firebaseio.com/";
-
+  const dbUrl = React.useRef("https://" + [PROJECT_ID] + ".firebaseio.com/");
 
   // Retreive menu data from database
   React.useEffect(() => {
     const getMenu = async () => {
       try {
-        const response = await fetch(dbUrl + "Menu.json", {
+        const response = await fetch(dbUrl.current + "Menu.json", {
           method: "GET",
         });
-
-        console.log(JSON.stringify(response.json));
 
         if (!response.status) {
           throw new Error(
@@ -47,41 +44,48 @@ const Menu = () => {
     };
 
     getMenu();
-  }, []);
-  
-  let order = [];
+  }, [dbUrl]);
+
+  //const updateCartHandler = (event) => {
+  //  event.preventDefault();
+  //  const postRequest = async () => {
+  //    const post = dbUrl.current + "orders.json";
+  //    console.log(post);
+  //    const response = await fetch(post, {
+  //      method: "POST",
+  //      headers: { contentType: "application/json" },
+  //      body: JSON.stringify(order),
+  //    });
+  //    return response;
+  //  };
+  //
+  //  const response = postRequest();
+  //  console.log(response);
+  //};
+
+  let preCart = [];
 
   const addToPreCartHandler = (newItem) => {
-    const existingCartItemIndex = order.findIndex(
+    const existingCartItemIndex = preCart.findIndex(
       (item) => item.id === newItem.id
     );
-    const existingCartItem = order[existingCartItemIndex];
+    const existingCartItem = preCart[existingCartItemIndex];
     if (existingCartItem) {
       const updatedItem = {
-        ...order[existingCartItemIndex],
+        ...preCart[existingCartItemIndex],
         amount: newItem.amount,
       };
-      order[existingCartItemIndex] = updatedItem;
+      preCart[existingCartItemIndex] = updatedItem;
     } else {
-      order.push(newItem);
+      preCart.push(newItem);
     }
   };
 
   const updateCartHandler = (event) => {
     event.preventDefault();
-    const postRequest = async () => {
-      const post = dbUrl + "/" + "orders.json";
-      console.log(post);
-      const response = await fetch(post, {
-        method: "POST",
-        headers: { contentType: "application/json" },
-        body: JSON.stringify(order),
-      });
-      return response;
-    };
-
-    const response = postRequest();
-    console.log(response);
+    if (preCart.length !== 0) {
+      cartCtx.updateCart(preCart);
+    }
   };
 
   if (error) console.log(error);
