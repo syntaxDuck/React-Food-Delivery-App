@@ -14,15 +14,15 @@ const MenuItemAmount = (props) => {
   }, [props.onUpdatePreCart]);
 
   const incrementCountHandler = () => {
+    props.onUpdatePreCart(amount + 1);
     setAmount((prevState) => {
-      props.onUpdatePreCart(prevState + 1);
       return prevState + 1;
     });
   };
 
   const decrementCountHandler = () => {
+    props.onUpdatePreCart(amount - 1);
     setAmount((prevState) => {
-      props.onUpdatePreCart(prevState - 1);
       return prevState - 1;
     });
   };
