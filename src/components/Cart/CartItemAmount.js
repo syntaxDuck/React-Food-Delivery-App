@@ -1,27 +1,28 @@
 import React from "react";
 import classes from "./CartItemAmount.module.css";
 
-const CartItemAmount = ({amountInCart, onUpdateCart}) => {
-
+const CartItemAmount = ({ amountInCart, onUpdateCart }) => {
   const [amount, setAmount] = React.useState(amountInCart);
   const isMounted = React.useRef(false);
 
-  React.useEffect(() => {
-    //Logic help avoid double render on mounting
-    if(isMounted.current) setAmount(0);
-    else isMounted.current=true;
-  }, [onUpdateCart]);
+  // React.useEffect(() => {
+  //   //Logic help avoid double render on mounting
+  //   //And reset
+  //   if(isMounted.current) setAmount(0);
+  //   else isMounted.current=true;
+  // }, [onUpdateCart]);
 
   const incrementCountHandler = () => {
+    onUpdateCart(amount + 1);
     setAmount((prevState) => {
-      onUpdateCart(prevState + 1);
       return prevState + 1;
     });
+
   };
 
   const decrementCountHandler = () => {
+    onUpdateCart(amount - 1);
     setAmount((prevState) => {
-      onUpdateCart(prevState - 1);
       return prevState - 1;
     });
   };

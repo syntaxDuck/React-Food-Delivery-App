@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "../UI/Modal";
-import CartItemAmount from "./CartItemAmount";
+import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
 import CartContext from "./cart-context";
 
@@ -15,15 +15,13 @@ const Cart = (props) => {
       <ul>
         {crtCtx.items.map((item) => {
           return (
-            <li key={item.id}>
-              <div className={classes["item-name"]}>
-                <h3>{item.name}</h3>
-              </div>
-              <CartItemAmount
-                onUpdateCart={() => console.log("Hello from cart")}
-                amountInCart={item.amount}
-              />
-            </li>
+            <CartItem
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              itemAmountInCart={item.amount}
+              onUpdateCartItem={crtCtx.updateCart}
+            />
           );
         })}
       </ul>
@@ -32,7 +30,7 @@ const Cart = (props) => {
 
   return (
     <div className={classes["modal-wrapper"]}>
-      <div 
+      <div
         className={classes["modal-background"]}
         onClick={props.onCartStateChange}
       ></div>
