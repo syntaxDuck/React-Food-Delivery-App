@@ -3,22 +3,24 @@ import CartItemAmount from "./CartItemAmount";
 
 import classes from "./CartItem.module.css";
 
-const CartItem = (props) => {
+const CartItem = ({ id, name, itemAmountInCart, onUpdateCartItem }) => {
   const calculateItemDifferential = (newAmount) => {
-    props.onUpdateCartItem([{
-      id: props.id,
-      amount: newAmount - props.itemAmountInCart,
-    }]);
+    onUpdateCartItem([
+      {
+        id: id,
+        amount: newAmount - itemAmountInCart,
+      },
+    ]);
   };
 
   return (
-    <li key={props.id}>
+    <li key={id}>
       <div className={classes["item-name"]}>
-        <h3>{props.name}</h3>
+        <h3>{name}</h3>
       </div>
       <CartItemAmount
         onUpdateCart={calculateItemDifferential}
-        amountInCart={props.itemAmountInCart}
+        amountInCart={itemAmountInCart}
       />
     </li>
   );

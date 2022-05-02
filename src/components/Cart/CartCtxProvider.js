@@ -8,17 +8,15 @@ const defaultCartState = {
 
 const cartReducer = (state, action) => {
   if (action.type === "UPDATE_CART") {
-
     let updatedItems = [...state.items];
 
     action.items.forEach((newItem) => {
-
       //Get existing item index and existing object if item exists in cart
       const existingCartItemIndex = updatedItems.findIndex(
         (item) => item.id === newItem.id
       );
       const existingCartItem = updatedItems[existingCartItemIndex];
-      
+
       //If item already exists in cart add items to existing object
       if (existingCartItem) {
         const updatedItem = {
@@ -26,7 +24,7 @@ const cartReducer = (state, action) => {
           amount: existingCartItem.amount + newItem.amount,
         };
         updatedItems[existingCartItemIndex] = updatedItem;
-      //Else push new item into cart
+        //Else push new item into cart
       } else {
         updatedItems.push(newItem);
       }
@@ -42,7 +40,7 @@ const cartReducer = (state, action) => {
   return defaultCartState;
 };
 
-const CartCtxProvider = (props) => {
+const CartCtxProvider = ({ children }) => {
   const [cartState, dispatchCartAction] = React.useReducer(
     cartReducer,
     defaultCartState
@@ -58,13 +56,11 @@ const CartCtxProvider = (props) => {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     updateCart: updateCartHandler,
-    submitOrder: submitOrderHandler
+    submitOrder: submitOrderHandler,
   };
 
   return (
-    <CartContext.Provider value={cartContext}>
-      {props.children}
-    </CartContext.Provider>
+    <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./MenuItemAmount.module.css";
 
-const MenuItemAmount = (props) => {
+const MenuItemAmount = ({ onUpdatePreCart }) => {
   console.log("Rendering Menu Item Form");
   //Directly manipulating DOM to avoid unecessary renders at the form level
   const [amount, setAmount] = React.useState(0);
@@ -9,19 +9,19 @@ const MenuItemAmount = (props) => {
 
   React.useEffect(() => {
     //Logic help avoid double render on mounting
-    if(isMounted.current) setAmount(0);
-    else isMounted.current=true;
-  }, [props.onUpdatePreCart]);
+    if (isMounted.current) setAmount(0);
+    else isMounted.current = true;
+  }, [onUpdatePreCart]);
 
   const incrementCountHandler = () => {
-    props.onUpdatePreCart(amount + 1);
+    onUpdatePreCart(amount + 1);
     setAmount((prevState) => {
       return prevState + 1;
     });
   };
 
   const decrementCountHandler = () => {
-    props.onUpdatePreCart(amount - 1);
+    onUpdatePreCart(amount - 1);
     setAmount((prevState) => {
       return prevState - 1;
     });

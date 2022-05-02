@@ -4,7 +4,7 @@ import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
 import CartContext from "./cart-context";
 
-const Cart = (props) => {
+const Cart = ({ onCartStateChange }) => {
   const crtCtx = React.useContext(CartContext);
 
   let cartContent;
@@ -32,7 +32,7 @@ const Cart = (props) => {
     <div className={classes["modal-wrapper"]}>
       <div
         className={classes["modal-background"]}
-        onClick={props.onCartStateChange}
+        onClick={onCartStateChange}
       ></div>
       <Modal className={classes["cart-modal"]}>{cartContent}</Modal>
     </div>

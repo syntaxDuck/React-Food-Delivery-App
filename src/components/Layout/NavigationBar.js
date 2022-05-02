@@ -3,7 +3,7 @@ import classes from "./navigationBar.module.css";
 import Button from "../UI/Button";
 import CartButton from "../Cart/CartButton";
 
-const NavigationBar = (props) => {
+const NavigationBar = ({ onCartStateChange }) => {
   const menuElements = [
     {
       id: "menu",
@@ -22,7 +22,11 @@ const NavigationBar = (props) => {
   const Buttons = (
     <ul className={classes["nav-buttons"]}>
       {menuElements.map((menuElement) => (
-        <Button key={menuElement.id} className={classes["nav-button"]} label={menuElement.text} />
+        <Button
+          key={menuElement.id}
+          className={classes["nav-button"]}
+          label={menuElement.text}
+        />
       ))}
     </ul>
   );
@@ -35,7 +39,7 @@ const NavigationBar = (props) => {
       </span>
       <div className={classes["button-container"]}>
         {Buttons}
-        <CartButton onCartStateChange={props.onCartStateChange}/>
+        <CartButton onCartStateChange={onCartStateChange} />
       </div>
     </header>
   );
