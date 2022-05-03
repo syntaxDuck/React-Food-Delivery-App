@@ -12,19 +12,23 @@ const Cart = ({ onCartStateChange }) => {
     cartContent = <p>Cart is empty...</p>;
   } else {
     cartContent = (
-      <ul>
-        {crtCtx.items.map((item) => {
-          return (
-            <CartItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              itemAmountInCart={item.amount}
-              onUpdateCartItem={crtCtx.updateCart}
-            />
-          );
-        })}
-      </ul>
+      <React.Fragment>
+        <h2>{`Cart Total: $${crtCtx.totalAmount.toFixed(2)}`}</h2>
+        <ul>
+          {crtCtx.items.map((item) => {
+            return (
+              <CartItem
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                price={item.price}
+                itemAmountInCart={item.amount}
+                onUpdateCartItem={crtCtx.updateCart}
+              />
+            );
+          })}
+        </ul>
+      </React.Fragment>
     );
   }
 

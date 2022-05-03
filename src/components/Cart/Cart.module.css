@@ -17,6 +17,9 @@
 }
 
 .cart-modal {
+  display: flex;
+  flex-direction: column;
+  align-content: right;
   overflow-y: scroll;
   box-shadow: 0 0 0.5em 0.1em var(--primary-color);
   width: 75%;
@@ -45,6 +48,14 @@
   font-weight: bold;
 }
 
+.cart-modal h2 {
+  
+  text-align: right;
+  margin: 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+
 .cart-modal li::after {
   display: block;
   position: absolute;
@@ -66,7 +77,7 @@
 }
 
 .cart-modal::-webkit-scrollbar-thumb {
-  background: var(--primary-color); 
+  background: var(--primary-color);
   border: 0.5em solid var(--background-color);
   border-radius: 100vw;
 }
