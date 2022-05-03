@@ -9,7 +9,12 @@ const Cart = ({ onCartStateChange }) => {
 
   let cartContent;
   if (crtCtx.items.length === 0) {
-    cartContent = <p>Cart is empty...</p>;
+    cartContent = (
+      <div className={classes["empty-cart"]}>
+        <h3>Cart is empty</h3>
+        <span class="material-icons md-114">sentiment_dissatisfied</span>
+      </div>
+    );
   } else {
     cartContent = (
       <React.Fragment>
