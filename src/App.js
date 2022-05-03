@@ -12,6 +12,9 @@ function App() {
     setCartActive((prevState) => !prevState);
   }
 
+  if (cartActive) document.body.style.overflow = 'hidden';
+  else document.body.style.overflow = 'auto';
+  
   console.log("Rendering");
   return (
       <div className="App">

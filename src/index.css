@@ -14,6 +14,10 @@ body {
   background-color: var(--background-color);
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .material-icons.md-18 {
   font-size: 18px;
 }
