@@ -65,7 +65,7 @@ const Cart = ({ onCartStateChange }) => {
           <div>
             <Button
               className={classes["clear-cart-button"]}
-              onClick={crtCtx.clearCart}
+              onClick={clearCartHandler}
               label="Clear Cart"
             />
             <Button
