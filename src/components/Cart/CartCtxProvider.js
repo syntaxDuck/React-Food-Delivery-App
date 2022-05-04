@@ -37,6 +37,7 @@ const cartReducer = (state, action) => {
 
     return { items: updatedItems, totalAmount: totalAmount };
   }
+  console.log("Here");
   return defaultCartState;
 };
 
@@ -50,13 +51,16 @@ const CartCtxProvider = ({ children }) => {
     dispatchCartAction({ type: "UPDATE_CART", items: items });
   }, []);
 
-  const submitOrderHandler = () => {};
+  const clearCartHandler = React.useCallback(() => {
+    console.log("Clear"); 
+    dispatchCartAction({ type: null });
+  }, []);
 
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     updateCart: updateCartHandler,
-    submitOrder: submitOrderHandler,
+    clearCart: clearCartHandler,
   };
 
   return (
