@@ -46,23 +46,6 @@ const Menu = () => {
     getMenu();
   }, [dbUrl]);
 
-  //const updateCartHandler = (event) => {
-  //  event.preventDefault();
-  //  const postRequest = async () => {
-  //    const post = dbUrl.current + "orders.json";
-  //    console.log(post);
-  //    const response = await fetch(post, {
-  //      method: "POST",
-  //      headers: { contentType: "application/json" },
-  //      body: JSON.stringify(order),
-  //    });
-  //    return response;
-  //  };
-  //
-  //  const response = postRequest();
-  //  console.log(response);
-  //};
-
   let preCart = [];
 
   const addToPreCartHandler = (newItem) => {
