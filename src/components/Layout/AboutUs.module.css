@@ -1,0 +1,20 @@
+.about-us-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.about-us-card {
+    flex-direction: column;
+    width: 49.5%;
+}
+
+.about-us-card h3 {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.about-us-card p {
+    font-size: 1.1em
+}
