@@ -23,6 +23,7 @@ const NavigationBar = ({ onCartStateChange }) => {
     <ul className={classes["nav-buttons"]}>
       {menuElements.map((menuElement) => (
         <Button
+          href={`#${menuElement.id}`}
           key={menuElement.id}
           className={classes["nav-button"]}
           label={menuElement.text}
