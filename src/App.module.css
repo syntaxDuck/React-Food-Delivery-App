@@ -1,5 +1,4 @@
-
-.App{
+.app {
   box-sizing: border-box;
 }
 
@@ -14,9 +13,8 @@
   gap: 2em;
 }
 
-
-img {
-  display:block;
+.app-img {
+  display: block;
   position: absolute;
   max-width: 100%;
   height: auto;

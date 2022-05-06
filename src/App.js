@@ -6,9 +6,10 @@ import image from "./assets/images/sushi.jpg";
 import NavigationBar from "./components/Layout/NavigationBar";
 import Menu from "./components/Layout/Menu";
 import AboutUs from "./components/Layout/AboutUs";
+import Location from "./components/Layout/Location";
 
 //Styles Imports
-import "./App.css";
+import classes from "./App.module.css";
 
 function App() {
   const [cartActive, setCartActive] = React.useState(false);
@@ -22,13 +23,14 @@ function App() {
 
   console.log("Rendering");
   return (
-    <div className="App">
+    <div className={classes["app"]}>
       {cartActive && <Cart onCartStateChange={cartStateHandler} />}
-      <img src={image} alt="Sushi" />
+      <img className={classes["app-img"]} src={image} alt="Sushi" />
       <NavigationBar onCartStateChange={cartStateHandler} />
-      <div className="content">
+      <div className={classes["content"]}>
         <AboutUs />
         <Menu />
+        <Location />
       </div>
     </div>
   );
