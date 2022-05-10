@@ -5,6 +5,12 @@
   align-items: center;
 }
 
+.about-us-wrapper a {
+  display: block;
+  position: relative;
+  top: -10em;
+}
+
 .about-us-card {
   display: flex;
   flex-direction: column;
