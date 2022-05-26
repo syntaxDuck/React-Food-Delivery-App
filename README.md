@@ -1,10 +1,17 @@
 # React Food Delivery App
 
 This project is a basic react app that implements the ability to pick from a list of menu items and add them to cart.
-Once the desired items are added to the cart the user can then "submit" their order like you would do on a variety of
-food order app.
+Upon loading the application, a "Menu" is loaded from the backend to be displayed in a selection form, so users can add items 
+to their cart. Once the desired items are added to the cart the user can then "submit" their order like you would do on a variety of
+food order app. The order is then sent off to the backend to be stored in a database.
 
 ## Motivation
+
+Developing this basic application was sparked by the desire to exercise the skills learned in a 
+[Udemy React Course](https://www.udemy.com/course/react-the-complete-guide-incl-redux/) in which I have been learning how 
+to develop and deploy React based applications. Many of the features/improvements that have been added or are planned 
+(Seen in the project’s issues) are a result of progressing through this course and implementing the new features and design patters 
+that are being introduced.
 
 # Application Stack
 ## FrontEnd
