@@ -3,7 +3,9 @@ import Card from "../UI/Card";
 import MenuItem from "./MenuItem";
 import classes from "./Menu.module.css";
 import Button from "../UI/Button";
-import CartContext from "../Cart/cart-context";
+
+//Functional Imports
+import { CartContext } from "../Cart/CartContext/CartCtxProvider";
 
 //import project specific variables
 import { PROJECT_ID } from "../../private/PRIVATE";
@@ -98,10 +100,11 @@ const Menu = () => {
 
   return (
     <Card className={classes["menu-card"]}>
-      <a id="menu" className={classes["menu-anchor"]}/>
+      <a id="menu" className={classes["menu-anchor"]} />
       <form onSubmit={updateCartHandler}>
         {menuContent}
         <Button className={classes["menu-submit"]} label="Add to Cart" />
+        <Button className={classes["menu-clear"]} label="Clear" />
       </form>
     </Card>
   );
