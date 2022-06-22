@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import CartCtxProvider from "./components/Cart/CartCtxProvider";
+import CartCtxProvider from "./components/Cart/CartContext/CartCtxProvider";
 
 const root = createRoot(document.getElementById("root"));
 root.render(

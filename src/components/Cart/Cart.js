@@ -2,13 +2,13 @@ import React from "react";
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
-import CartContext from "./cart-context";
+import { CartContext } from "./CartContext/CartCtxProvider";
 import Button from "../UI/Button";
 
 //import project specific variables
 import { PROJECT_ID } from "../../private/PRIVATE";
 
-const Cart = ({ onCartStateChange }) => {
+const Cart = () => {
   const crtCtx = React.useContext(CartContext);
 
   const [error, setError] = React.useState(null);
@@ -39,12 +39,12 @@ const Cart = ({ onCartStateChange }) => {
 
     submitOrder();
     crtCtx.clearCart();
-    onCartStateChange();
+    crtCtx.toggleCart();
   };
 
   const clearCartHandler = () => {
     crtCtx.clearCart();
-    onCartStateChange();
+    crtCtx.toggleCart();
   };
 
   if (error) console.log(error);
@@ -75,7 +75,7 @@ const Cart = ({ onCartStateChange }) => {
             />
           </div>
         </div>
-        
+
         <div className={classes["cart-items"]}>
           <ul>
             {crtCtx.items.map((item) => {
@@ -100,7 +100,7 @@ const Cart = ({ onCartStateChange }) => {
     <div className={classes["modal-wrapper"]}>
       <div
         className={classes["modal-background"]}
-        onClick={onCartStateChange}
+        onClick={crtCtx.toggleCart}
       ></div>
       <Modal className={classes["cart-modal"]}>{cartContent}</Modal>
     </div>

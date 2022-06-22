@@ -1,9 +1,14 @@
 import React from "react";
+
+//Component Imports
 import classes from "./navigationBar.module.css";
 import Button from "../UI/Button";
 import CartButton from "../Cart/CartButton";
 
-const NavigationBar = ({ onCartStateChange }) => {
+//Functional Imports
+import { CartContext } from "../Cart/CartContext/CartCtxProvider";
+
+const NavigationBar = () => {
   const menuElements = [
     {
       id: "menu",
@@ -18,6 +23,8 @@ const NavigationBar = ({ onCartStateChange }) => {
       text: "About Us",
     },
   ];
+
+  const cartCtx = React.useContext(CartContext);
 
   const Buttons = (
     <ul className={classes["nav-buttons"]}>
@@ -40,7 +47,7 @@ const NavigationBar = ({ onCartStateChange }) => {
       </span>
       <div className={classes["button-container"]}>
         {Buttons}
-        <CartButton onCartStateChange={onCartStateChange} />
+        <CartButton onCartStateChange={cartCtx.toggleCart} />
       </div>
     </header>
   );

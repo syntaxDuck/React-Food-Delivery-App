@@ -8,15 +8,14 @@ import Menu from "./components/Layout/Menu";
 import AboutUs from "./components/Layout/AboutUs";
 import Location from "./components/Layout/Location";
 
+//Functional Imports
+import { CartContext } from "./components/Cart/CartContext/CartCtxProvider";
+
 //Styles Imports
 import classes from "./App.module.css";
 
 function App() {
-  const [cartActive, setCartActive] = React.useState(false);
-
-  const cartStateHandler = () => {
-    setCartActive((prevState) => !prevState);
-  };
+  const { cartActive } = React.useContext(CartContext);
 
   if (cartActive) document.body.style.overflow = "hidden";
   else document.body.style.overflow = "auto";
@@ -24,9 +23,9 @@ function App() {
   console.log("Rendering");
   return (
     <div className={classes["app"]}>
-      {cartActive && <Cart onCartStateChange={cartStateHandler} />}
+      {cartActive && <Cart />}
       <img className={classes["app-img"]} src={image} alt="Sushi" />
-      <NavigationBar onCartStateChange={cartStateHandler} />
+      <NavigationBar />
       <div className={classes["content"]}>
         <AboutUs />
         <Menu />
