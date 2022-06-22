@@ -1,12 +1,10 @@
-import React from "react";
-import CartContext from "./cart-context";
-
-const defaultCartState = {
+export const defaultCartState = {
   items: [],
   totalAmount: 0,
+  cartActive: false,
 };
 
-const cartReducer = (state, action) => {
+const CartReducer = (state, action) => {
   if (action.type === "UPDATE_CART") {
     let updatedItems = [...state.items];
 
@@ -35,37 +33,15 @@ const cartReducer = (state, action) => {
       return total + item.amount * item.price;
     }, 0);
 
-    return { items: updatedItems, totalAmount: totalAmount };
+    return { ...state, items: updatedItems, totalAmount: totalAmount };
   }
-  console.log("Here");
+
+  if (action.type === "TOGGLE_CART") {
+    const toggleCart = !state.cartActive;
+    return { ...state, cartActive: toggleCart };
+  }
+
   return defaultCartState;
 };
 
-const CartCtxProvider = ({ children }) => {
-  const [cartState, dispatchCartAction] = React.useReducer(
-    cartReducer,
-    defaultCartState
-  );
-
-  const updateCartHandler = React.useCallback((items) => {
-    dispatchCartAction({ type: "UPDATE_CART", items: items });
-  }, []);
-
-  const clearCartHandler = React.useCallback(() => {
-    console.log("Clear"); 
-    dispatchCartAction({ type: null });
-  }, []);
-
-  const cartContext = {
-    items: cartState.items,
-    totalAmount: cartState.totalAmount,
-    updateCart: updateCartHandler,
-    clearCart: clearCartHandler,
-  };
-
-  return (
-    <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
-  );
-};
-
-export default CartCtxProvider;
+export default CartReducer;
