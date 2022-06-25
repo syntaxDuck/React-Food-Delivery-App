@@ -6,9 +6,10 @@ import Button from "../UI/Button";
 import CartButton from "../Cart/CartButton";
 
 //Functional Imports
-import { CartContext } from "../Cart/CartContext/CartCtxProvider";
+import { useCart } from "../Cart/CartContext/CartCtxProvider";
 
 const NavigationBar = () => {
+  console.log("Rendering Nav");
   const menuElements = [
     {
       id: "menu",
@@ -24,7 +25,7 @@ const NavigationBar = () => {
     },
   ];
 
-  const cartCtx = React.useContext(CartContext);
+  const toggleCart = useCart().toggleCart;
 
   const Buttons = (
     <ul className={classes["nav-buttons"]}>
@@ -47,10 +48,10 @@ const NavigationBar = () => {
       </span>
       <div className={classes["button-container"]}>
         {Buttons}
-        <CartButton onCartStateChange={cartCtx.toggleCart} />
+        <CartButton onCartStateChange={toggleCart} />
       </div>
     </header>
   );
 };
 
-export default NavigationBar;
+export default React.memo(NavigationBar);

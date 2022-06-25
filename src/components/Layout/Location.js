@@ -4,6 +4,7 @@ import Card from "../UI/Card";
 import classes from "./Location.module.css";
 
 const Location = () => {
+  console.log("Rendering Location");
   return (
     <div id="location" className={classes["location-wrapper"]}>
       <Card className={classes["mapouter"]}>
@@ -40,4 +41,4 @@ const Location = () => {
   );
 };
 
-export default Location;
+export default React.memo(Location);
