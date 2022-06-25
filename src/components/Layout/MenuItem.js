@@ -7,7 +7,7 @@ const MenuItem = React.memo(
     console.log("Rendering MenuItem");
     const formatedPrice = `$${price.toFixed(2)}`;
 
-    const updatePreCartHandler = (itemQuantity) => {
+    const addToPreCartHandler = (itemQuantity) => {
       onAddToPreCart({
         id: id,
         name: name,
@@ -23,7 +23,7 @@ const MenuItem = React.memo(
           <div className={classes["item-price"]}>{formatedPrice}</div>
           <div className={classes["item-description"]}>{description}</div>
         </div>
-        <MenuItemAmount onUpdatePreCart={updatePreCartHandler} />
+        <MenuItemAmount onAddToPreCart={addToPreCartHandler} />
       </li>
     );
   }

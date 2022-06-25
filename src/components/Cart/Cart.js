@@ -2,14 +2,14 @@ import React from "react";
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
-import { CartContext } from "./CartContext/CartCtxProvider";
+import { useCart } from "./CartContext/CartCtxProvider";
 import Button from "../UI/Button";
 
 //import project specific variables
 import { PROJECT_ID } from "../../private/PRIVATE";
 
 const Cart = () => {
-  const crtCtx = React.useContext(CartContext);
+  const crtCtx = useCart();
 
   const [error, setError] = React.useState(null);
   const dbUrl = React.useRef("https://" + [PROJECT_ID] + ".firebaseio.com/");

@@ -5,14 +5,15 @@ import classes from "./Menu.module.css";
 import Button from "../UI/Button";
 
 //Functional Imports
-import { CartContext } from "../Cart/CartContext/CartCtxProvider";
+import { useCart } from "../Cart/CartContext/CartCtxProvider";
 
 //import project specific variables
 import { PROJECT_ID } from "../../private/PRIVATE";
 
 const Menu = () => {
   console.log("Rendering Menu");
-  const cartCtx = React.useContext(CartContext);
+  const updateCart = useCart().updateCart;
+
   const [data, setData] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -69,7 +70,7 @@ const Menu = () => {
   const updateCartHandler = (event) => {
     event.preventDefault();
     if (preCart.length !== 0) {
-      cartCtx.updateCart(preCart);
+      updateCart(preCart);
     }
   };
 
@@ -110,4 +111,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default React.memo(Menu);

@@ -9,18 +9,18 @@ import AboutUs from "./components/Layout/AboutUs";
 import Location from "./components/Layout/Location";
 
 //Functional Imports
-import { CartContext } from "./components/Cart/CartContext/CartCtxProvider";
+import { useCart } from "./components/Cart/CartContext/CartCtxProvider";
 
 //Styles Imports
 import classes from "./App.module.css";
 
 function App() {
-  const { cartActive } = React.useContext(CartContext);
+  console.log("Rendering App");
+  const cartActive = useCart().cartActive;
 
   if (cartActive) document.body.style.overflow = "hidden";
   else document.body.style.overflow = "auto";
 
-  console.log("Rendering");
   return (
     <div className={classes["app"]}>
       {cartActive && <Cart />}
