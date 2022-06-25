@@ -1,8 +1,8 @@
 import React from "react";
 import CartReducer, { defaultCartState } from "./CartReducer";
 
-// Define Context for Cart
-export const CartContext = React.createContext({
+
+const CartContext = React.createContext({
   items: [],
   totalAmount: 0,
   cartActive: false,
@@ -11,7 +11,10 @@ export const CartContext = React.createContext({
   toggleCart: () => {},
 });
 
+export const useCart = () => React.useContext(CartContext);
+
 const CartCtxProvider = (props) => {
+  console.log("Rendering Ctx Provider");
   const [cartState, dispatchCartAction] = React.useReducer(
     CartReducer,
     defaultCartState
@@ -37,6 +40,8 @@ const CartCtxProvider = (props) => {
     clearCart: clearCartHandler,
     toggleCart: toggleCartHandler,
   };
+
+  console.log(cartContext);
 
   return (
     <CartContext.Provider value={cartContext}>
