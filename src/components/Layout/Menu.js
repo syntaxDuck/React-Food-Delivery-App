@@ -8,16 +8,13 @@ import Button from "../UI/Button";
 import { useCart } from "../Cart/CartContext/CartCtxProvider";
 import useFetch from "../../functions/useFetch";
 
-//import project specific variables
-import { PROJECT_ID } from "../../private/PRIVATE";
+import { FIREBASE_ENDPOINT } from "../../App";
 
 const Menu = () => {
   const updateCart = useCart().updateCart;
   const [preCart, setPreCart] = React.useState([]);
 
-  const dbUrl = React.useRef(
-    "https://" + [PROJECT_ID] + ".firebaseio.com/Menu.json"
-  );
+  const dbUrl = React.useRef(FIREBASE_ENDPOINT + "Menu.json");
 
   const { data, error, loading } = useFetch(dbUrl.current);
 

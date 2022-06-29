@@ -8,16 +8,13 @@ import classes from "./Cart.module.css";
 import { useCart } from "./CartContext/CartCtxProvider";
 import Button from "../UI/Button";
 
-//import project specific variables
-import { PROJECT_ID } from "../../private/PRIVATE";
+import { FIREBASE_ENDPOINT } from "../../App";
 
 const Cart = () => {
   const crtCtx = useCart();
 
   const [error, setError] = React.useState(null);
-  const dbUrl = React.useRef(
-    "https://" + [PROJECT_ID] + ".firebaseio.com/Orders.josn"
-  );
+  const dbUrl = React.useRef(FIREBASE_ENDPOINT + "Orders.josn");
 
   const submitOrderHandler = () => {
     const submitOrder = async () => {
