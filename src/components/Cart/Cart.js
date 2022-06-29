@@ -1,4 +1,7 @@
 import React from "react";
+import { createPortal } from "react-dom";
+
+//Component Imports
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
@@ -12,12 +15,14 @@ const Cart = () => {
   const crtCtx = useCart();
 
   const [error, setError] = React.useState(null);
-  const dbUrl = React.useRef("https://" + [PROJECT_ID] + ".firebaseio.com/");
+  const dbUrl = React.useRef(
+    "https://" + [PROJECT_ID] + ".firebaseio.com/Orders.josn"
+  );
 
   const submitOrderHandler = () => {
     const submitOrder = async () => {
       try {
-        const response = await fetch(dbUrl.current + "Orders.json", {
+        const response = await fetch(dbUrl.current, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -96,14 +101,15 @@ const Cart = () => {
     );
   }
 
-  return (
+  return createPortal(
     <div className={classes["modal-wrapper"]}>
       <div
         className={classes["modal-background"]}
         onClick={crtCtx.toggleCart}
       ></div>
       <Modal className={classes["cart-modal"]}>{cartContent}</Modal>
-    </div>
+    </div>,
+    document.getElementById("modal")
   );
 };
 
