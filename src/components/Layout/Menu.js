@@ -6,70 +6,51 @@ import Button from "../UI/Button";
 
 //Functional Imports
 import { useCart } from "../Cart/CartContext/CartCtxProvider";
+import useFetch from "../../functions/useFetch";
 
 //import project specific variables
 import { PROJECT_ID } from "../../private/PRIVATE";
 
 const Menu = () => {
-  console.log("Rendering Menu");
   const updateCart = useCart().updateCart;
+  const [preCart, setPreCart] = React.useState([]);
 
-  const [data, setData] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const dbUrl = React.useRef(
+    "https://" + [PROJECT_ID] + ".firebaseio.com/Menu.json"
+  );
 
-  const dbUrl = React.useRef("https://" + [PROJECT_ID] + ".firebaseio.com/");
-
-  // Retreive menu data from database
-  React.useEffect(() => {
-    const getMenu = async () => {
-      try {
-        const response = await fetch(dbUrl.current + "Menu.json", {
-          method: "GET",
-        });
-
-        if (!response.status) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-
-        let actualData = await response.json();
-
-        setData(actualData);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        setData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getMenu();
-  }, [dbUrl]);
-
-  let preCart = [];
+  const { data, error, loading } = useFetch(dbUrl.current);
 
   const addToPreCartHandler = (newItem) => {
     const existingCartItemIndex = preCart.findIndex(
       (item) => item.id === newItem.id
     );
-    const existingCartItem = preCart[existingCartItemIndex];
-    if (existingCartItem) {
-      const updatedItem = {
-        ...preCart[existingCartItemIndex],
-        amount: newItem.amount,
-      };
-      preCart[existingCartItemIndex] = updatedItem;
+
+    if (existingCartItemIndex >= 0) {
+      setPreCart((prevState) => {
+        let newState = prevState;
+        newState = newState.filter((item) => item.id !== newItem.id);
+
+        //If Item count is zero remove item and return
+        if (newItem.amount === 0) {
+          return newState;
+        }
+
+        //Else update item amount with newItem object
+        newState.push(newItem);
+        return newState;
+      });
     } else {
-      preCart.push(newItem);
+      setPreCart((prevState) => {
+        return prevState.concat(newItem);
+      });
     }
   };
 
   const updateCartHandler = (event) => {
     event.preventDefault();
     if (preCart.length !== 0) {
+      setPreCart([]);
       updateCart(preCart);
     }
   };
@@ -84,16 +65,30 @@ const Menu = () => {
     menuContent = (
       <ul className={classes["menu-items"]}>
         {Object.keys(data).map((menuItem) => {
-          return (
+          let itemAmount = 0;
+
+          if (preCart.length > 0) {
+            const itemIndex = preCart.findIndex(
+              (item) => item.id === data[menuItem].id
+            );
+            if (itemIndex >= 0) {
+              itemAmount = preCart[itemIndex].amount;
+            }
+          }
+
+          const newMenuItem = (
             <MenuItem
               key={data[menuItem].id}
               id={data[menuItem].id}
               price={data[menuItem].price}
               name={menuItem}
               description={data[menuItem].description}
+              amount={itemAmount}
               onAddToPreCart={addToPreCartHandler}
             />
           );
+
+          return newMenuItem;
         })}
       </ul>
     );
@@ -105,7 +100,11 @@ const Menu = () => {
       <form onSubmit={updateCartHandler}>
         {menuContent}
         <Button className={classes["menu-submit"]} label="Add to Cart" />
-        <Button className={classes["menu-clear"]} label="Clear" />
+        <Button
+          className={classes["menu-clear"]}
+          onClick={() => setPreCart([])}
+          label="Clear"
+        />
       </form>
     </Card>
   );

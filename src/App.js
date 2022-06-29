@@ -15,7 +15,6 @@ import { useCart } from "./components/Cart/CartContext/CartCtxProvider";
 import classes from "./App.module.css";
 
 function App() {
-  console.log("Rendering App");
   const cartActive = useCart().cartActive;
 
   if (cartActive) document.body.style.overflow = "hidden";

@@ -10,7 +10,6 @@ import Card from "../UI/Card";
 import classes from "./AboutUs.module.css";
 
 const AboutUs = () => {
-  console.log("Rendering About");
   return (
     <div className={classes["about-us-wrapper"]}>
       <Card className={classes["about-us-card"]}>

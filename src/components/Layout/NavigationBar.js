@@ -9,7 +9,6 @@ import CartButton from "../Cart/CartButton";
 import { useCart } from "../Cart/CartContext/CartCtxProvider";
 
 const NavigationBar = () => {
-  console.log("Rendering Nav");
   const menuElements = [
     {
       id: "menu",
