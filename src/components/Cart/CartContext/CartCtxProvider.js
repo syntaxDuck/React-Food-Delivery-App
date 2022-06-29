@@ -1,7 +1,6 @@
 import React from "react";
 import CartReducer, { defaultCartState } from "./CartReducer";
 
-
 const CartContext = React.createContext({
   items: [],
   totalAmount: 0,
@@ -14,23 +13,22 @@ const CartContext = React.createContext({
 export const useCart = () => React.useContext(CartContext);
 
 const CartCtxProvider = (props) => {
-  console.log("Rendering Ctx Provider");
   const [cartState, dispatchCartAction] = React.useReducer(
     CartReducer,
     defaultCartState
   );
 
-  const updateCartHandler = React.useCallback((items) => {
+  const updateCartHandler = (items) => {
     dispatchCartAction({ type: "UPDATE_CART", items: items });
-  }, []);
+  };
 
-  const clearCartHandler = React.useCallback(() => {
-    dispatchCartAction({ type: null });
-  }, []);
+  const clearCartHandler = () => {
+    dispatchCartAction({ type: "CLEAR_CART" });
+  };
 
-  const toggleCartHandler = React.useCallback(() => {
+  const toggleCartHandler = () => {
     dispatchCartAction({ type: "TOGGLE_CART" });
-  }, []);
+  };
 
   const cartContext = {
     items: cartState.items,
@@ -40,8 +38,6 @@ const CartCtxProvider = (props) => {
     clearCart: clearCartHandler,
     toggleCart: toggleCartHandler,
   };
-
-  console.log(cartContext);
 
   return (
     <CartContext.Provider value={cartContext}>
