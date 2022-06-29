@@ -41,6 +41,10 @@ const CartReducer = (state, action) => {
     return { ...state, cartActive: toggleCart };
   }
 
+  if (action.type === "CLEAR_CART") {
+    return { ...state, items: [] };
+  }
+
   return defaultCartState;
 };
 
