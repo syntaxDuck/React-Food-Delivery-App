@@ -14,7 +14,7 @@ const Cart = () => {
   const crtCtx = useCart();
 
   const [error, setError] = React.useState(null);
-  const dbUrl = React.useRef(FIREBASE_ENDPOINT + "Orders.josn");
+  const dbUrl = React.useRef(FIREBASE_ENDPOINT + "Orders.json");
 
   const submitOrderHandler = () => {
     const submitOrder = async () => {
