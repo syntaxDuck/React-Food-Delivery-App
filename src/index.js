@@ -1,16 +1,23 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+
+//Components
+import App from "./App";
+
+//Styles
+import "./index.css";
 
 import CartCtxProvider from "./components/Cart/CartContext/CartCtxProvider";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <CartCtxProvider>
-    <App />
-  </CartCtxProvider>
+  <BrowserRouter>
+    <CartCtxProvider>
+      <App />
+    </CartCtxProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

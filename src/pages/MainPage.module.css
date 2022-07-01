@@ -1,8 +1,4 @@
-.app {
-  box-sizing: border-box;
-}
-
-.content {
+.main-content {
   display: flex;
   flex-direction: column;
   padding: 0 5% 0 5%;
@@ -11,12 +7,4 @@
   position: relative;
   top: 10rem;
   gap: 2em;
-}
-
-.app-img {
-  display: block;
-  position: absolute;
-  max-width: 100%;
-  height: auto;
-  z-index: -10;
 }

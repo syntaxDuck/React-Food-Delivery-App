@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //Component Imports
 import classes from "./navigationBar.module.css";
@@ -29,13 +30,22 @@ const NavigationBar = () => {
   const Buttons = (
     <ul className={classes["nav-buttons"]}>
       {menuElements.map((menuElement) => (
-        <Button
-          href={`#${menuElement.id}`}
-          key={menuElement.id}
-          className={classes["nav-button"]}
-          label={menuElement.text}
-        />
+        <Link to="/index">
+          <Button
+            href={`#${menuElement.id}`}
+            key={menuElement.id}
+            className={classes["nav-button"]}
+            label={menuElement.text}
+          />
+        </Link>
       ))}
+      <Link to="/Login">
+        <Button
+          className={classes["nav-button"]}
+          key={"login"}
+          label={"Login"}
+        />
+      </Link>
     </ul>
   );
 
