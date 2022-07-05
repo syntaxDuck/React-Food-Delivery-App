@@ -30,7 +30,7 @@ const NavigationBar = () => {
   const Buttons = (
     <ul className={classes["nav-buttons"]}>
       {menuElements.map((menuElement) => (
-        <Link to="/index">
+        <Link key={menuElement.id} to="/index">
           <Button
             href={`#${menuElement.id}`}
             key={menuElement.id}
@@ -39,7 +39,7 @@ const NavigationBar = () => {
           />
         </Link>
       ))}
-      <Link to="/Login">
+      <Link key={"login"} to="/Login">
         <Button
           className={classes["nav-button"]}
           key={"login"}
