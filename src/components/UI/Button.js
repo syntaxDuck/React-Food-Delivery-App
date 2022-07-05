@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Button.module.css";
 
-const button = ({ href, className, onClick, disabled, label, type}) => {
+const Button = ({ href, className, onClick, disabled, label, type}) => {
   const buttonClasses = `${className || classes["button-default"]}`;
 
   return (
@@ -13,4 +13,4 @@ const button = ({ href, className, onClick, disabled, label, type}) => {
   );
 };
 
-export default button;
+export default Button;
