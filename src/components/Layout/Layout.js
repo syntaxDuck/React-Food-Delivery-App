@@ -10,7 +10,9 @@ import classes from "./Layout.module.css";
 const Layout = (props) => {
   return (
     <Fragment>
-      <NavigationBar />
+      <NavigationBar
+        loginStatus={props.loginStatus}
+      />
       <img className={classes["layout-img"]} src={image} alt="Sushi" />
       <main className={classes.main}>{props.children}</main>
     </Fragment>

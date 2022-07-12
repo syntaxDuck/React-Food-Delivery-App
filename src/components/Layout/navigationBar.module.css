@@ -78,4 +78,15 @@
   left: 0;
 }
 
+.welcome-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+}
+
+.welcome-tag p {
+  margin: 0;
+}
+
 

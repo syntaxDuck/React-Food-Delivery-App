@@ -9,7 +9,7 @@ import CartButton from "../Cart/CartButton";
 //Functional Imports
 import { useCart } from "../Cart/CartContext/CartCtxProvider";
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
   const menuElements = [
     {
       id: "menu",
@@ -27,6 +27,10 @@ const NavigationBar = () => {
 
   const toggleCart = useCart().toggleCart;
 
+  const logoutHandler = () => {
+    window.location.reload(false);
+  };
+
   const Buttons = (
     <ul className={classes["nav-buttons"]}>
       {menuElements.map((menuElement) => (
@@ -39,13 +43,22 @@ const NavigationBar = () => {
           />
         </Link>
       ))}
-      <Link key={"login"} to="/Login">
+      {!props.loginStatus && (
+        <Link key={"login"} to="/Login">
+          <Button
+            className={classes["nav-button"]}
+            key={"login"}
+            label={"Login"}
+          />
+        </Link>
+      )}
+      {props.loginStatus && (
         <Button
-          className={classes["nav-button"]}
-          key={"login"}
-          label={"Login"}
+          onClick={logoutHandler}
+          className={`${classes["welcome-tag"]} ${classes["nav-button"]}`}
+          label={"Logout"}
         />
-      </Link>
+      )}
     </ul>
   );
 

@@ -15,14 +15,14 @@ import NotFound from "./pages/NotFound";
 export const FIREBASE_ENDPOINT = "https://" + [PROJECT_ID] + ".firebaseio.com/";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(null);
 
   return (
-    <Layout>
+    <Layout loginStatus={isLoggedIn}>
       <Routes>
         <Route path="/" element={<Navigate replace to="/index" />} />
         <Route path="/index" element={<MainPage />} />
-        <Route path="/Login" element={<LoginPage />} />
+        <Route path="/Login" element={<LoginPage onLoginChange={setIsLoggedIn}/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
