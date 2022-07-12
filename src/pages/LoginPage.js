@@ -1,46 +1,54 @@
 import React, { useRef, useState } from "react";
 
 //Component imports
-import Card from "../components/UI/Card";
-import Button from "../components/UI/Button";
+import LoginForm from "../components/Layout/LoginForm";
 
 //Function imports
+import { useNavigate } from "react-router-dom";
 import { API_KEY } from "../private/PRIVATE";
 
-//Style imports
-import styles from "./LoginPage.module.css";
-
 const API_URLS = {
-  SignUp: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=",
-  SignIn:
-    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=",
+  SignUp: `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+  SignIn: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
 };
 
-const LoginPage = () => {
-  console.log("Rendering Login");
+const LoginPage = (props) => {
   const [userAction, setUserAction] = useState("SignIn");
+  let navigate = useNavigate();
 
-  const userNameRef = useRef(null);
+  const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const confPasswordRef = useRef(null);
-
-  console.log(userAction);
-  console.log(API_URLS[userAction] + API_KEY);
 
   document.body.style.overflow = "hidden";
 
   const [error, setError] = React.useState(null);
 
-  const signUpHandler = () => {
-    const signUp = async () => {
-      const apiURL = API_URLS[userAction] + API_KEY;
+  const userActionHandler = async (event) => {
+
+    if (userAction === "SignUp") {
+      if (passwordRef.current.value !== confPasswordRef.current.value) {
+        return;
+      }
+    }
+
+    let response_data;
+    const sendRequest = async () => {
+      const apiURL = API_URLS[userAction];
+
+      const requestBody = {
+        email: usernameRef.current.value,
+        password: passwordRef.current.value,
+        returnSecureToken: true,
+      };
+
       try {
-        const response = await fetch(apiURL.current, {
+        const response = await fetch(apiURL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(),
+          body: JSON.stringify(requestBody),
         });
 
         if (!response.status) {
@@ -49,39 +57,32 @@ const LoginPage = () => {
           );
         }
 
+        response_data = await response.json();
+
         setError(null);
       } catch (err) {
         setError(err.message);
       }
     };
 
-    signUp();
+    await sendRequest();
+    if (error === null) {
+      props.onLoginChange(response_data.email.split("@")[0]);
+      navigate("/index");
+    }
   };
 
   return (
-    <div className={styles["login-content"]}>
-      <Card className={styles["login-card"]}>
-        <h1>{userAction === "SignIn" ? "Login" : "New User"}</h1>
-        <form className={styles["login-form"]}>
-          <div>
-            <label>Username</label>
-            <input type="text" ref={userNameRef} />
-            <label>Password</label>
-            <input type="password" ref={passwordRef} />
-            {userAction === "SignUp" && (
-              <React.Fragment>
-                <label>Confirm Password</label>
-                <input type="password" ref={confPasswordRef} />
-              </React.Fragment>
-            )}
-          </div>
-        </form>
-        <div>
-          <Button onClick={() => setUserAction("SignUp")} label={"Sign Up"} />
-          <Button onClick={() => setUserAction("SignIn")} label={"Sign In"} />
-        </div>
-      </Card>
-    </div>
+    <React.Fragment>
+      <LoginForm
+        onFormSubmit={userActionHandler}
+        onChangeUserAction={setUserAction}
+        userAction={userAction}
+        usernameInputRef={usernameRef}
+        passwordInputRef={passwordRef}
+        confpasswordInputRef={confPasswordRef}
+      />
+    </React.Fragment>
   );
 };
 
