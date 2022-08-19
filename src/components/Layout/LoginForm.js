@@ -85,8 +85,9 @@ const LoginForm = (props) => {
         <h1>{props.userAction === "SignIn" ? "Login" : "New User"}</h1>
         <form onSubmit={formSubmitHandler} className={classes["login-form"]}>
           <div>
-            <label>Username</label>
+            <label htmlFor="username">Username</label>
             <input
+              id="username"
               className={
                 !usernameValid
                   ? classes["login-input-error"]
@@ -95,8 +96,10 @@ const LoginForm = (props) => {
               type="text"
               ref={props.usernameInputRef}
             />
-            <label>Password</label>
+
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               className={
                 !passwordValid
                   ? classes["login-input-error"]
@@ -107,8 +110,9 @@ const LoginForm = (props) => {
             />
             {props.userAction === "SignUp" && (
               <React.Fragment>
-                <label>Confirm Password</label>
+                <label htmlFor="confPassword">Confirm Password</label>
                 <input
+                  id="confPassword"
                   className={
                     !confPasswordValid
                       ? classes["login-input-error"]

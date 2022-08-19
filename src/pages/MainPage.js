@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 
 //Component Imports
 import Cart from "../components/Cart/Cart";
-import NavigationBar from "../components/Layout/NavigationBar";
 import Menu from "../components/Layout/Menu";
 import AboutUs from "../components/Layout/AboutUs";
 import Location from "../components/Layout/Location";
@@ -16,12 +15,12 @@ import classes from "./MainPage.module.css";
 const MainPage = () => {
   const cartActive = useCart().cartActive;
 
-  if (cartActive) document.body.style.overflow = "hidden";
-  else document.body.style.overflow = "auto";
+  // if (cartActive) document.body.style.overflow = "hidden";
+  // else document.body.style.overflow = "auto";
 
   return (
     <Fragment>
-      {cartActive && <Cart />} 
+      {cartActive && <Cart />}
       <div className={classes["main-content"]}>
         <AboutUs />
         <Menu />

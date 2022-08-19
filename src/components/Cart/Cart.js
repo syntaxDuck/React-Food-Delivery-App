@@ -103,7 +103,8 @@ const Cart = () => {
       <div
         className={classes["modal-background"]}
         onClick={crtCtx.toggleCart}
-      ></div>
+        role="modal"
+      />
       <Modal className={classes["cart-modal"]}>{cartContent}</Modal>
     </div>,
     document.getElementById("modal")
